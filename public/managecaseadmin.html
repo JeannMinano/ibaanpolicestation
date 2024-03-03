@@ -1,0 +1,270 @@
+<!IDOCTYE.html >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Case Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+/* Professional styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar {
+  background-color: #34495E;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+.form-container {
+  background-color:  hwb(209 84% 1%);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  margin-top: 20px;
+
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-container button {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-container button:hover {
+  background-color: #34495e;
+}
+
+/* Final output styling */
+.final-output-container {
+  background-color: hwb(209 84% 1%);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  margin-top: 20px;
+}
+
+.final-output-container h2 {
+  margin-top: 0;
+}
+
+.case-entry {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 5px solid #ccc;
+  border-radius: 10px;
+}
+
+.edit-delete-buttons {
+  text-align: right;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Manage Case Form</h1>
+</div>
+
+<div class="container">
+  <div class="navbar">
+    <a href="admin.html" class="active">Dashboard</a>
+    <a href="settingsadmin.html">Settings</a>
+    <a href="Ibaan Police Station System.html">Logout</a> <!-- Linked to the logout page -->
+  </div>
+
+  <div class="form-container">
+    <h2>Case Details</h2>
+    <form id="caseForm">
+      <div class="form-group">
+        <label for="caseNumber">Case Number:</label>
+        <input type="text" id="caseNumber" name="caseNumber" required>
+      </div>
+      <div class="form-group">
+        <label for="caseType">Case Type:</label>
+        <select id="caseType" name="caseType">
+          <option value="criminal">Criminal</option>
+          <option value="civil">Civil</option>
+          <option value="traffic">Traffic</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="caseDescription">Case Description:</label>
+        <textarea id="caseDescription" name="caseDescription" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="caseStatus">Case Status:</label>
+        <select id="caseStatus" name="caseStatus">
+          <option value="open">Open</option>
+          <option value="closed">Closed</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="assignedOfficer">Assigned Officer:</label>
+        <input type="text" id="assignedOfficer" name="assignedOfficer" required>
+      </div>
+      <div class="btn-container">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="final-output-container" id="finalOutputContainer" style="display: none;">
+    <h2>Case Entries</h2>
+    <div id="caseEntries"></div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('caseForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var caseNumber = document.getElementById('caseNumber').value;
+  var caseType = document.getElementById('caseType').value;
+  var caseDescription = document.getElementById('caseDescription').value;
+  var caseStatus = document.getElementById('caseStatus').value;
+  var assignedOfficer = document.getElementById('assignedOfficer').value;
+
+  var caseData = {
+    caseNumber: caseNumber,
+    caseType: caseType,
+    caseDescription: caseDescription,
+    caseStatus: caseStatus,
+    assignedOfficer: assignedOfficer
+  };
+  
+  var cases = JSON.parse(localStorage.getItem('cases')) || [];
+  cases.push(caseData);
+  localStorage.setItem('cases', JSON.stringify(cases));
+  
+  displayCases();
+  // Reset form fields
+  document.getElementById('caseForm').reset();
+});
+
+function displayCases() {
+  var cases = JSON.parse(localStorage.getItem('cases')) || [];
+  var caseEntries = document.getElementById('caseEntries');
+  caseEntries.innerHTML = '';
+  
+  cases.forEach(function(caseData, index) {
+    var caseEntry = document.createElement('div');
+    caseEntry.classList.add('case-entry');
+    caseEntry.innerHTML = `
+      <p><strong>Case Number:</strong> ${caseData.caseNumber}</p>
+      <p><strong>Case Type:</strong> ${caseData.caseType}</p>
+      <p><strong>Description:</strong> ${caseData.caseDescription}</p>
+      <p><strong>Status:</strong> ${caseData.caseStatus}</p>
+      <p><strong>Assigned Officer:</strong> ${caseData.assignedOfficer}</p>
+      <div class="edit-delete-buttons">
+        <button onclick="editCase(${index})">Edit</button>
+        <button onclick="deleteCase(${index})">Delete</button>
+      </div>
+    `;
+    caseEntries.appendChild(caseEntry);
+  });
+  
+  // Show final output container
+  document.getElementById('finalOutputContainer').style.display = 'block';
+}
+
+function editCase(index) {
+  var cases = JSON.parse(localStorage.getItem('cases')) || [];
+  var caseData = cases[index];
+  document.getElementById('caseNumber').value = caseData.caseNumber;
+  document.getElementById('caseType').value = caseData.caseType;
+  document.getElementById('caseDescription').value = caseData.caseDescription;
+  document.getElementById('caseStatus').value = caseData.caseStatus;
+  document.getElementById('assignedOfficer').value = caseData.assignedOfficer;
+  
+  // Remove the edited case from local storage
+  cases.splice(index, 1);
+  localStorage.setItem('cases', JSON.stringify(cases));
+  
+  displayCases();
+}
+
+function deleteCase(index) {
+  var cases = JSON.parse(localStorage.getItem('cases')) || [];
+  cases.splice(index, 1);
+  localStorage.setItem('cases', JSON.stringify(cases));
+  
+  displayCases();
+}
+
+// Display existing cases on page load
+displayCases();
+</script>
+
+</body>
+</html>

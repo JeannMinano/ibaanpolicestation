@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Police Incident Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+/* Professional styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar {
+  background-color: #34495E;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+.form-container {
+  background-color: hwb(209 84% 1%);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-container button {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-container button:hover {
+  background-color: #34495e;
+}
+
+/* Final output styling */
+.final-output-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  margin-top: 20px;
+}
+
+.final-output-container h2 {
+  margin-top: 0;
+}
+
+.incident-entry {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.edit-delete-buttons {
+  text-align: right;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Police Incident Form</h1>
+</div>
+<div class="container">
+  <div class="navbar">
+    <a href="admin.html" class="active">Dashboard</a>
+    <a href="settingsadmin.html">Settings</a>
+    <a href="Ibaan Police Station System.html">Logout</a> <!-- Linked to the logout page -->
+  </div>
+
+<div class="container">
+  <!-- Responsive form for police incident reporting -->
+  <div class="form-container">
+    <h2>Incident Report Form</h2>
+    <form id="incidentForm">
+      <div class="form-group">
+        <label for="dateOfReport">Date Of Report:</label>
+        <input type="date" id="dateOfReport" name="dateOfReport" required>
+      </div>
+      <div class="form-group">
+        <label for="personInvolved">Person Involved:</label>
+        <input type="text" id="personInvolved" name="personInvolved" placeholder="Fullname" required>
+        <input type="text" id="address" name="address" placeholder="Address" required>
+        <input type="text" id="identificationType" name="identificationType" placeholder="Identification Type" required>
+        <input type="text" id="identificationNumber" name="identificationNumber" placeholder="Identification Number" required>
+        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+      </div>
+      <div class="form-group">
+        <label for="incidentDate">Date of Incident:</label>
+        <input type="date" id="incidentDate" name="incidentDate" required>
+      </div>
+      <div class="form-group">
+        <label for="incidentTime">Time:</label>
+        <input type="time" id="incidentTime" name="incidentTime" required>
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+      </div>
+      <div class="form-group">
+        <label for="incidentDescription">Describe the Incident:</label>
+        <textarea id="incidentDescription" name="incidentDescription" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="injuries">Injuries:</label>
+        <input type="checkbox" id="injuriesYes" name="injuriesYes" value="Yes">
+        <label for="injuriesYes">Yes</label>
+        <input type="checkbox" id="injuriesNo" name="injuriesNo" value="No">
+        <label for="injuriesNo">No</label>
+        <textarea id="injuriesDescription" name="injuriesDescription" placeholder="If YES, describe the injuries"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="witnesses">Witnesses:</label>
+        <input type="checkbox" id="witnessesYes" name="witnessesYes" value="Yes">
+        <label for="witnessesYes">Yes</label>
+        <input type="checkbox" id="witnessesNo" name="witnessesNo" value="No">
+        <label for="witnessesNo">No</label>
+        <input type="text" id="witnessesNames" name="witnessesNames" placeholder="If YES, enter the witnesses names and contact info.">
+      </div>
+      <div class="form-group">
+        <label for="reporterName">Reporter Name:</label>
+        <input type="text" id="reporterName" name="reporterName" required>
+      </div>
+      <div class="form-group">
+        <label for="reporterContact">Reporter Contact:</label>
+        <input type="text" id="reporterContact" name="reporterContact" required>
+      </div>
+      <div class="btn-container">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Final output container -->
+  <div class="final-output-container" id="finalOutputContainer" style="display: none;">
+    <h2>Reported Incidents</h2>
+    <div id="incidentEntries"></div>
+  </div>
+
+  <!-- Back button to go back to admin.html -->
+
+<script>
+document.getElementById('incidentForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var dateOfReport = document.getElementById('dateOfReport').value;
+  var personInvolved = document.getElementById('personInvolved').value;
+  var address = document.getElementById('address').value;
+  var identificationType = document.getElementById('identificationType').value;
+  var identificationNumber = document.getElementById('identificationNumber').value;
+  var phoneNumber = document.getElementById('phoneNumber').value;
+  var incidentDate = document.getElementById('incidentDate').value;
+  var incidentTime = document.getElementById('incidentTime').value;
+  var location = document.getElementById('location').value;
+  var incidentDescription = document.getElementById('incidentDescription').value;
+  var injuriesYes = document.getElementById('injuriesYes').checked;
+  var injuriesNo = document.getElementById('injuriesNo').checked;
+  var injuriesDescription = document.getElementById('injuriesDescription').value;
+  var witnessesYes = document.getElementById('witnessesYes').checked;
+  var witnessesNo = document.getElementById('witnessesNo').checked;
+  var witnessesNames = document.getElementById('witnessesNames').value;
+  var reporterName = document.getElementById('reporterName').value;
+  var reporterContact = document.getElementById('reporterContact').value;
+  
+  var incident = {
+    dateOfReport: dateOfReport,
+    personInvolved: personInvolved,
+    address: address,
+    identificationType: identificationType,
+    identificationNumber: identificationNumber,
+    phoneNumber: phoneNumber,
+    incidentDate: incidentDate,
+    incidentTime: incidentTime,
+    location: location,
+    incidentDescription: incidentDescription,
+    injuriesYes: injuriesYes,
+    injuriesNo: injuriesNo,
+    injuriesDescription: injuriesDescription,
+    witnessesYes: witnessesYes,
+    witnessesNo: witnessesNo,
+    witnessesNames: witnessesNames,
+    reporterName: reporterName,
+    reporterContact: reporterContact
+  };
+  
+  var incidents = JSON.parse(localStorage.getItem('incidents')) || [];
+  incidents.push(incident);
+  localStorage.setItem('incidents', JSON.stringify(incidents));
+  
+  displayIncidents();
+  
+  // Reset form fields
+  document.getElementById('incidentForm').reset();
+});
+
+function displayIncidents() {
+  var incidents = JSON.parse(localStorage.getItem('incidents')) || [];
+  var incidentEntries = document.getElementById('incidentEntries');
+  incidentEntries.innerHTML = '';
+  
+  incidents.forEach(function(incident, index) {
+    var incidentEntry = document.createElement('div');
+    incidentEntry.classList.add('incident-entry');
+    incidentEntry.innerHTML = `
+      <p><strong>Date of Report:</strong> ${incident.dateOfReport}</p>
+      <p><strong>Person Involved:</strong> ${incident.personInvolved}</p>
+      <p><strong>Address:</strong> ${incident.address}</p>
+      <p><strong>Identification:</strong> ${incident.identificationType} - ${incident.identificationNumber}</p>
+      <p><strong>Phone Number:</strong> ${incident.phoneNumber}</p>
+      <p><strong>Date of Incident:</strong> ${incident.incidentDate}</p>
+      <p><strong>Time:</strong> ${incident.incidentTime}</p>
+      <p><strong>Location:</strong> ${incident.location}</p>
+      <p><strong>Description:</strong> ${incident.incidentDescription}</p>
+      <p><strong>Injuries:</strong> ${incident.injuriesYes ? 'Yes - ' + incident.injuriesDescription : 'No'}</p>
+      <p><strong>Witnesses:</strong> ${incident.witnessesYes ? 'Yes - ' + incident.witnessesNames : 'No'}</p>
+      <p><strong>Reporter Name:</strong> ${incident.reporterName}</p>
+      <p><strong>Reporter Contact:</strong> ${incident.reporterContact}</p>
+      <div class="edit-delete-buttons">
+        <button onclick="editIncident(${index})">Edit</button>
+        <button onclick="deleteIncident(${index})">Delete</button>
+      </div>
+    `;
+    incidentEntries.appendChild(incidentEntry);
+  });
+  
+  // Show final output container
+  document.getElementById('finalOutputContainer').style.display = 'block';
+}
+
+function editIncident(index) {
+  var incidents = JSON.parse(localStorage.getItem('incidents')) || [];
+  var incident = incidents[index];
+  document.getElementById('dateOfReport').value = incident.dateOfReport;
+  document.getElementById('personInvolved').value = incident.personInvolved;
+  document.getElementById('address').value = incident.address;
+  document.getElementById('identificationType').value = incident.identificationType;
+  document.getElementById('identificationNumber').value = incident.identificationNumber;
+  document.getElementById('phoneNumber').value = incident.phoneNumber;
+  document.getElementById('incidentDate').value = incident.incidentDate;
+  document.getElementById('incidentTime').value = incident.incidentTime;
+  document.getElementById('location').value = incident.location;
+  document.getElementById('incidentDescription').value = incident.incidentDescription;
+  document.getElementById('injuriesYes').checked = incident.injuriesYes;
+  document.getElementById('injuriesNo').checked = incident.injuriesNo;
+  document.getElementById('injuriesDescription').value = incident.injuriesDescription;
+  document.getElementById('witnessesYes').checked = incident.witnessesYes;
+  document.getElementById('witnessesNo').checked = incident.witnessesNo;
+  document.getElementById('witnessesNames').value = incident.witnessesNames;
+  document.getElementById('reporterName').value = incident.reporterName;
+  document.getElementById('reporterContact').value = incident.reporterContact;
+  
+  // Remove the edited incident from local storage
+  incidents.splice(index, 1);
+  localStorage.setItem('incidents', JSON.stringify(incidents));
+  
+  displayIncidents();
+}
+
+function deleteIncident(index) {
+  var incidents = JSON.parse(localStorage.getItem('incidents')) || [];
+  incidents.splice(index, 1);
+  localStorage.setItem('incidents', JSON.stringify(incidents));
+  
+  displayIncidents();
+}
+
+function goBack() {
+  window.location.href = 'admin.html';
+}
+
+// Display existing incidents on page load
+displayIncidents();
+</script>
+
+</body>
+</html>
