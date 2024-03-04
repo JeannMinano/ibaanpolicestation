@@ -167,7 +167,7 @@ footer {
 <header>
     <h1>Ibaan Municipal Police Station System</h1>
     <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search...">
+        <input type="text" class="search-input" placeholder="Search..." id="searchInput">
         <button class="search-btn" onclick="search()">Search</button>
     </div>
     <img src="PNP-Logo.png" alt="Police Logo"  width="300" height="300">
@@ -316,12 +316,7 @@ footer {
   <p>Connect with us on social media for updates and announcements.</p>
 </section>
 
-
-
 <script>
-  // Your existing JavaScript code
-  
-  // New JavaScript functions
   function toggleDropdown() {
     var dropdownContent = document.getElementById("myDropdown");
     dropdownContent.classList.toggle("show");
@@ -330,6 +325,17 @@ footer {
   function showContent(contentId) {
     var content = document.getElementById(contentId);
     content.classList.toggle("show");
+  }
+
+// Enhanced search functionality
+function search() {
+    var searchTerm = document.getElementById("searchInput").value.trim(); // Get the search term
+    if (searchTerm === "") {
+      alert("Please enter a search term."); // Alert if the search term is empty
+    } else {
+      var searchURL = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm); // Construct the search URL
+      window.location.href = searchURL; // Redirect the user to the search engine
+    }
   }
 </script>
 
