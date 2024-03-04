@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibaan Police Station System</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2C3E50; /* Dark blue color for police personality */
+    color: #fff; /* White text color */
+}
+header {
+    background-color: #34495E; /* Darker blue for header */
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    background-color: #34495E; /* Darker blue for navigation */
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color: #fff; /* White text color for navigation links */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+nav a:hover {
+    color: #E74C3C; /* Red color on hover */
+}
+section {
+    padding: 20px;
+}
+footer {
+    background-color: #34495E; /* Darker blue for footer */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.search-input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+.search-btn {
+    background-color: #E74C3C; /* Red color */
+    color: #fff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search-btn:hover {
+    background-color: #C0392B; /* Dark red color on hover */
+}
+.logo-img {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: auto;
+    margin-top: 18px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 23%;
+}
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.navbar {
+  overflow: hidden;
+  background-color: hwb(0 97% 1% / 0.171);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 12px 10px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 8px 10px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 2;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #95cbfd;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(250, 245, 245, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: rgb(250, 242, 242);
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.show {
+  display: block;
+}
+.arrow-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.arrow-btn:hover {
+    color: #fa5204;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Ibaan Municipal Police Station System</h1>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+        <button class="search-btn" onclick="search()">Search</button>
+    </div>
+    <img src="PNP-Logo.png" alt="Police Logo"  width="300" height="300">
+</header>
+<nav>
+    <div class="navbar" >
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+
+    <!-- Survey Link-->
+    <a href="https://forms.gle/2MDrDVj9ToZVsQgy5" target="blank">Take our Survey</a>
+    <!-- Police Clearance Link-->
+    <a href="https://pnpclearance.ph/register" target="blank">Police Clearance</a>
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown()">Police Officials <span class="arrow-down">&#9660;</span></button>
+      
+      <div class="dropdown-content" id="myDropdown">
+        <!-- Dropdown content for Police Officials -->
+        <button class="arrow-btn" onclick="showContent('chiefContent')">CHIEF, PNP <span class="arrow-down">&#9660;</span></button>
+        <div id="chiefContent" class="dropdown-content">
+          <p>PGEN BENJAMIN CASUGA ACORDA JR.</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('regionalDirector')">REGIONAL DIRECTOR <span class="arrow-down">&#9660;</span></button>
+        <div id="regionalDirector" class="dropdown-content">
+          <p>PBGEN PAUL KENNETH TUHAY LUCAS</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('provincialDirector')">PROVINCIAL DIRECTOR <span class="arrow-down">&#9660;</span></button>
+        <div id="provincialDirector" class="dropdown-content">
+          <p>PCOL SAMSON BELGIA BELMONTE</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('officerinCharge')">OFFICER IN CHARGE <span class="arrow-down">&#9660;</span></button>
+        <div id="officerinCharge" class="dropdown-content">
+          <p>PMAJ JANVER CARALIPIO CABATAÑA</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('deputychiefofPolice')">DEPUTY CHIEF OF POLICE <span class="arrow-down">&#9660;</span></button>
+        <div id="deputychiefofPolice" class="dropdown-content">
+          <p>PCPT JULIUS MASILUNGAN OCAMPO</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('mespo')">MESPO <span class="arrow-down">&#9660;</span></button>
+        <div id="mespo" class="dropdown-content">
+          <p>PEMS MARILOU DE CHAVEZ LANDICHO</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('admin')">CHIEF, ADMIN <span class="arrow-down">&#9660;</span></button>
+        <div id="admin" class="dropdown-content">
+          <p>PSMS ERELYN CASAS DE JOYA</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('intel')">CHIEF, INTEL <span class="arrow-down">&#9660;</span></button>
+        <div id="intel" class="dropdown-content">
+          <p>PSMS CELESTER DIOLA DELGADO</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('operation')">CHIEF, OPERATION <span class="arrow-down">&#9660;</span></button>
+        <div id="operation" class="dropdown-content">
+          <p>PMS OLIVER CUSTODIO YLAGAN</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('logistics')">CHIEF, LOGISTICS <span class="arrow-down">&#9660;</span></button>
+        <div id="logistics" class="dropdown-content">
+          <p>PSMS ARNULFO FOMEZ PASIA</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('pcad')">CHIEF, PCAD <span class="arrow-down">&#9660;</span></button>
+        <div id="pcad" class="dropdown-content">
+          <p>PSSg HARINE PASCUA ROSALES</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('finance')">CHIEF, FINANCE <span class="arrow-down">&#9660;</span></button>
+        <div id="finance" class="dropdown-content">
+          <p>PEMS MARILOU DE CHAVEZ LANDICHO</p>
+        </div>
+        <button class="arrow-btn" onclick="showContent('inves')">CHIEF, INVES <span class="arrow-down">&#9660;</span></button>
+        <div id="inves" class="dropdown-content">
+          <p>PSMS CELESTER DIOLA DELGADO</p>
+        </div>
+      </div>
+    </div>
+    <a href="login.html">Login</a>
+</nav>
+
+<section id="home">
+    <div class="section-content">
+        <h2>Welcome to Ibaan Municipal  Police Station</h2>
+        <p>This is the official website of Ibaan Police Station. We are committed to serving and protecting our community.</p>
+        <p>Please explore our website to learn more about our services and how we can assist you.</p>
+        <p>Stay updated with the latest news and events in our community.</p>
+    </div>
+    <div class="image-container">
+        <img src="IBAAN Police.jpg" alt="Image" class= "center" >
+    </div>
+</section>
+<section id="about">
+    <h2>About Us</h2>
+    <p>Ibaan Municipal Police Station is dedicated to maintain peace and order in the Ibaan community. 
+      Our team of experienced officers works tirelessly to ensure the safety and security of our residents.</p>
+    <p>Learn more about our history, mission, and values.</p>
+      <div class="row">
+        <div class="column">
+          <img src="ibaan picture.jpg" alt="Time" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="ibaan.jpg" alt="Ibaan" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="ibaan1.jpg" alt="Police" style="width:100%">
+        </div>
+      </div>
+</section>
+<section id="services">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of services to meet the needs of our community:</p>
+    <ul>
+        <li>Emergency response</li>
+        <li>Crime prevention</li>
+        <li>Community outreach programs</li>
+        <li>Investigation and enforcement</li>
+    </ul>
+    <div class="row">
+        <div class="column">
+          <img src="service1.jpg" alt="Time" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="service2.jpg" alt="Ibaan" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="service3.jpg" alt="Police" style="width:100%">
+        </div>
+      </div>
+    <p>Contact us to request our services or report an incident.</p>
+</section>
+<section id="policeofficials">
+  <h2>Police Officers</h2>
+  <p>Our dedicated police officers are the guardians of justice and order, tirelessly working to ensure safety 
+    and security of our community. With unwavering courage and commitment, they stand as protectors, ready to 
+    respond to any challenge. Through their dedication and professionalism, they empower 
+    our communities, instilling confidence and trust in every interaction.
+    With each officer embodying resilience, resourcefulness, and a commitment to 
+    excellence, they lead by example, inspiring others to uphold, the values 
+    of integrity and service. Together, they are united in their mission to serve with 
+    compassion, to uphold the law, and to make our neighborhoods safer for all.
+  </p>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>If you have any questions or concerns, please don't hesitate to contact us:</p>
+  <p>Phone: 123-456-7890</p>
+  <p>Email: ibaanpolice@example.com</p>
+  <p>Address: Ibaan Municipal Police Station, Poblacion Ibaan Batangas</p>
+  <p>Connect with us on social media for updates and announcements.</p>
+</section>
+
+<script>
+  function toggleDropdown() {
+    var dropdownContent = document.getElementById("myDropdown");
+    dropdownContent.classList.toggle("show");
+  }
+
+  function showContent(contentId) {
+    var content = document.getElementById(contentId);
+    content.classList.toggle("show");
+  }
+
+// Enhanced search functionality
+function search() {
+    var searchTerm = document.getElementById("searchInput").value.trim(); // Get the search term
+    if (searchTerm === "") {
+      alert("Please enter a search term."); // Alert if the search term is empty
+    } else {
+      var searchURL = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm); // Construct the search URL
+      window.location.href = searchURL; // Redirect the user to the search engine
+    }
+  }
+</script>
+
+</body>
+</html>
+<footer>
+  <p>&copy; 2024 Ibaan Municipal Police Station. All rights reserved.</p>
+</footer>
